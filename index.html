@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemplo de Fetch API</title>
+</head>
+<body>
+    <h1>Imagem da API</h1>
+    <img id="image" alt="Imagem da API" width="300" />
+    
+    <script>
+        
+        const apiUrl = 'https://api.thecatapi.com/v1/images/search';
+
+        
+        fetch(apiUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro na requisição: ' + response.statusText);
+                }
+                return response.json(); 
+            })
+            .then(data => {
+                
+                const imageUrl = data.imageUrl;
+
+               
+                const imgElement = document.getElementById('image');
+
+                
+                imgElement.src = imageUrl;
+            })
+            .catch(error => {
+                console.error('Erro ao obter os dados:', error);
+            });
+    </script>
+</body>
+</html>
